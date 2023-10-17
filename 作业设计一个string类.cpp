@@ -4,11 +4,17 @@ using namespace std;
 class String
 {
 public:
-	String(char* d) :data(data)
+	String(const char* d) :data(data)
 	{
 		cout << "普通构造函数" << endl;
-		data = nullptr;
-		size = 0;
+		if (d == nullptr)
+		{
+			data = new char[1];
+			data[0] = '\0';
+		}
+		int len = strlen(d);
+		data = new char[len + 1];
+		strcpy(data, d);
 	}
 	String(const String& s)
 	{
@@ -93,3 +99,10 @@ String& String::operator+=(const String& s)
 	return *this;
 }
 
+int main()
+{
+	String str("hello");
+
+
+	return 0;
+}
